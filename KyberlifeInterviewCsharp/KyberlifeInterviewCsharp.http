@@ -1,0 +1,6 @@
+@KyberlifeInterviewCsharp_HostAddress = http://localhost:5084
+
+GET {{KyberlifeInterviewCsharp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
