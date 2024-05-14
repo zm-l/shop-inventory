@@ -2,7 +2,7 @@ using KyberlifeInterviewCsharp.Core.DTO.GatewayResponses;
 using KyberlifeInterviewCsharp.Domain;
 using KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
 
-namespace KyberlifeInterviewCsharp.Core.Interfaces;
+namespace KyberlifeInterviewCsharp.Infrastructure.Repositories;
 
 /// <summary>
 /// ShopItemRepository interface.

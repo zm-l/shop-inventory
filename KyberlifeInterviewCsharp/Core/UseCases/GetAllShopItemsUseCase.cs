@@ -1,7 +1,7 @@
 using KyberlifeInterviewCsharp.Core.DTO;
 using KyberlifeInterviewCsharp.Core.DTO.UseCaseRequests;
 using KyberlifeInterviewCsharp.Core.DTO.UseCaseResponses;
-using KyberlifeInterviewCsharp.Core.Interfaces;
+using KyberlifeInterviewCsharp.Infrastructure.Repositories;
 
 namespace KyberlifeInterviewCsharp.Core.UseCases;
 

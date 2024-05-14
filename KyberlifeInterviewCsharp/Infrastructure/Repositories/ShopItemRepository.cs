@@ -1,8 +1,6 @@
 using KyberlifeInterviewCsharp.Core.DTO;
 using KyberlifeInterviewCsharp.Core.DTO.GatewayResponses;
-using KyberlifeInterviewCsharp.Core.Interfaces;
 using KyberlifeInterviewCsharp.Domain;
-using KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
 using Microsoft.EntityFrameworkCore;
 
 namespace KyberlifeInterviewCsharp.Infrastructure.Repositories;
