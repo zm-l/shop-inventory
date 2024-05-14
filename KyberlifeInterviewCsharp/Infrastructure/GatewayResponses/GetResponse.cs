@@ -1,3 +1,5 @@
+using KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
+
 namespace KyberlifeInterviewCsharp.Core.DTO.GatewayResponses;
 
 public sealed class GetResponse<T>(int id, T? result, bool success, List<Error> errors)

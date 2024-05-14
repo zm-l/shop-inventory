@@ -1,3 +1,5 @@
+using KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
+
 namespace KyberlifeInterviewCsharp.Core.DTO.GatewayResponses;
 
 public class CreateOrUpdateResponse<T>(int id, T? result, bool success, List<Error> errors) : BaseGatewayResponse(success, errors)

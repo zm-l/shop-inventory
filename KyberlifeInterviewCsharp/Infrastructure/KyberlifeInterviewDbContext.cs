@@ -4,21 +4,28 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KyberlifeInterviewCsharp.Infrastructure;
 
-public class KyberlifeInterviewDbContext(DbContextOptions<KyberlifeInterviewDbContext> options, DbSet<Todo> todos)
+/// <summary>
+/// DbContext for the application.
+/// </summary>
+public class KyberlifeInterviewDbContext(DbContextOptions<KyberlifeInterviewDbContext> options)
     : DbContext(options)
 {
-    public DbSet<Todo> Todos { get; init; } = todos;
+    public DbSet<ShopItem> ShopItems { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Todo>(ConfigureTodo);
+        modelBuilder.Entity<ShopItem>(ConfirmShopItem);
     }
 
-    private static void ConfigureTodo(EntityTypeBuilder<Todo> builder)
+    private static void ConfirmShopItem(EntityTypeBuilder<ShopItem> builder)
     {
-        builder.HasKey(t => t.Id);
-        builder.Property(t => t.Title).IsRequired();
-        builder.Property(t => t.Description).IsRequired();
-        builder.Property(t => t.IsComplete).IsRequired();
+        builder.Property(t => t.Id);
+        builder.Property(t => t.Name)
+            .IsRequired();
+        builder.Property(t => t.Price)
+            .HasAnnotation("Range", new[] { 0.01m, 1_000_000m }) //$0.01 to $1,000,000, values are arbitrary
+            .IsRequired();
+        builder.Property(t => t.IsSold)
+            .IsRequired();
     }
 }

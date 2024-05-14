@@ -1,0 +1,29 @@
+namespace KyberlifeInterviewCsharp.Domain;
+
+public class ShopItem : BaseEntity
+{
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public bool IsSold { get; set; }
+
+    public ShopItem(string name, decimal price, bool isSold)
+    {
+        Name = name;
+        Price = price;
+        IsSold = isSold;
+    }
+
+    public ShopItem(int id, string name, decimal price, bool isSold)
+    {
+        Id = id;
+        Name = name;
+        Price = price;
+        IsSold = isSold;
+    }
+
+    public override string ToString()
+    {
+        var status = IsSold ? "SOLD" : "UNSOLD";
+        return $"[{status}] {Name} - ${Price}";
+    }
+}

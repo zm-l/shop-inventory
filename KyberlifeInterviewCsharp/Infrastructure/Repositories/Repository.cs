@@ -2,10 +2,14 @@ using KyberlifeInterviewCsharp.Core.DTO;
 using KyberlifeInterviewCsharp.Core.DTO.GatewayResponses;
 using KyberlifeInterviewCsharp.Core.Interfaces;
 using KyberlifeInterviewCsharp.Domain;
+using KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
 using Microsoft.EntityFrameworkCore;
 
 namespace KyberlifeInterviewCsharp.Infrastructure.Repositories;
 
+/// <summary>
+/// Generic implementation of IRepository.
+/// </summary>
 public class Repository<T>(DbContext dbContext) : IRepository<T>
     where T : BaseEntity
 {
@@ -51,21 +55,16 @@ public class Repository<T>(DbContext dbContext) : IRepository<T>
         }
     }
 
-    public async Task<long> Count()
-    {
-        return await dbContext.Set<T>().CountAsync();
-    }
-
-    public async Task<GetRangeResponse<T>> List()
+    public async Task<CountResponse> Count()
     {
         try
         {
-            var items = await dbContext.Set<T>().ToListAsync();
-            return new GetRangeResponse<T>(items, true, []);
+            var count = await dbContext.Set<T>().CountAsync();
+            return new CountResponse(count, true, []);
         }
         catch (Exception e)
         {
-            return new GetRangeResponse<T>([], false, [new Error(e.Message)]);
+            return new CountResponse(-1, false, [new Error(e.Message)]);
         }
     }
 }
