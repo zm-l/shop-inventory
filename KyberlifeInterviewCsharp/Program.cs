@@ -5,7 +5,6 @@
 // but for simplicity, it is all done here.
 
 using Microsoft.EntityFrameworkCore;
-
 using KyberlifeInterviewCsharp.Core.Interfaces;
 using KyberlifeInterviewCsharp.Core.UseCases;
 using KyberlifeInterviewCsharp.Infrastructure;

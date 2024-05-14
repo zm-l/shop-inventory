@@ -23,6 +23,7 @@ public class GetAllShopItemsUseCase : IUseCase<GetAllShopItemsRequest, GetAllSho
             {
                 return new GetAllShopItemsResponse(response.Result, true, []);
             }
+
             return new GetAllShopItemsResponse([], false, response.Errors);
         }
         catch (Exception e)

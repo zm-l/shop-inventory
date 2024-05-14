@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace KyberlifeInterviewCsharp.Service;
 
@@ -13,7 +13,9 @@ public class ApiResponse<T>
     public required IEnumerable<string>? Errors { get; set; }
     public T? Data { get; set; }
 
-    private ApiResponse() {}
+    private ApiResponse()
+    {
+    }
 
     public static ApiResponse<T> Success(T data)
     {

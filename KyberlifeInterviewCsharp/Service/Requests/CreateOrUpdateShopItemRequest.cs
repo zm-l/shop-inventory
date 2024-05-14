@@ -1,6 +1,6 @@
 namespace KyberlifeInterviewCsharp.Service.Requests;
 
-public class AddShopItemRequest
+public class CreateOrUpdateShopItemRequest
 {
     public string Name { get; set; }
     public decimal Price { get; set; }

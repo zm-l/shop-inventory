@@ -10,10 +10,10 @@ namespace KyberlifeInterviewCsharp.Service;
 /// <summary>
 /// The controller for shop items.
 ///
-/// Implement the endpoints in this class.
+/// Your task is to implement the endpoints in this class.
 /// </summary>
 [ApiController]
-[Route("api/shop-item")]
+[Route("/")]
 public class ShopItemController
 {
     private readonly GetAllShopItemsUseCase _getAllShopItemsUseCase;
@@ -27,7 +27,7 @@ public class ShopItemController
     /// Returns all shop items within this shop.
     /// </summary>
     [HttpGet]
-    [Route("get-all")]
+    [Route("shop-items")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<ApiResponse<List<ShopItem>>>> GetAll([FromQuery] bool includeSold = true)
@@ -37,44 +37,48 @@ public class ShopItemController
             IncludeSold = includeSold,
         };
         var response = await _getAllShopItemsUseCase.Handle(request);
-        if (response.Success)
-        {
-            return ApiResponse<List<ShopItem>>.Success(response.ShopItems);
-        }
-        return ApiResponse<List<ShopItem>>.Error(HttpStatusCode.InternalServerError, response.Errors.Select(x => x.Description));
+        return response.Success
+            ? ApiResponse<List<ShopItem>>.Success(response.ShopItems)
+            : ApiResponse<List<ShopItem>>.Error(HttpStatusCode.InternalServerError, response.Errors.Select(x => x.Description));
+    }
+
+    /// <summary>
+    /// Gets a specific shop item by its ID.
+    /// </summary>
+    [HttpGet]
+    [Route("shop-item/{id:int}")]
+    public async Task<ActionResult<ApiResponse<ShopItem>>> GetShopItem(int id)
+    {
+        return ApiResponse<ShopItem>.Error(
+            HttpStatusCode.NotImplemented,
+            ["This method is not implemented yet."]
+        );
     }
 
     /// <summary>
     /// Returns the revenue of this shop i.e. the sum of all sold items.
     /// </summary>
     [HttpGet]
-    [Route("get-revenue")]
+    [Route("shop-items/revenue")]
     public async Task<ActionResult<ApiResponse<decimal>>> GetRevenue()
     {
-        throw new NotImplementedException();
+        return ApiResponse<decimal>.Error(
+            HttpStatusCode.NotImplemented,
+            ["This method is not implemented yet."]
+        );
     }
 
     /// <summary>
-    /// Adds an item to the shop. The item will be marked as unsold.
-    /// If the item already exists, HTTP 400 is returned.
-    /// If the price is less than or equal to 0, HTTP 400 is returned.
-    /// Otherwise, the item is added and HTTP 201 is returned.
+    /// Creates or updates a shop item.
     /// </summary>
     [HttpPost]
-    [Route("add-item")]
-    public async Task<ActionResult<ApiResponse<int>>> AddShopItem([FromBody] AddShopItemRequest request)
+    [Route("shop-item")]
+    [Route("shop-item/{id:int}")]
+    public async Task<ActionResult<ApiResponse<int>>> CreateOrUpdateShopItem([FromBody] CreateOrUpdateShopItemRequest request, int? id)
     {
-        throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// Marks an item as sold. If the item is already sold, HTTP 400 is returned.
-    /// Otherwise, the item is marked as sold and HTTP 200 is returned.
-    /// </summary>
-    [HttpPost]
-    [Route("mark-as-sold")]
-    public async Task<ActionResult<ApiResponse<int>>> MarkItemAsSold([FromBody] string id)
-    {
-        throw new NotImplementedException();
+        return ApiResponse<int>.Error(
+            HttpStatusCode.NotImplemented,
+            ["This method is not implemented yet."]
+        );
     }
 }
