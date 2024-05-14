@@ -1,14 +1,19 @@
+using System.Net;
 using KyberlifeInterviewCsharp.Core.DTO.UseCaseRequests;
 using KyberlifeInterviewCsharp.Core.UseCases;
 using KyberlifeInterviewCsharp.Domain;
 using KyberlifeInterviewCsharp.Service.Requests;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KyberlifeInterviewCsharp.Service;
 
+/// <summary>
+/// The controller for shop items.
+///
+/// Implement the endpoints in this class.
+/// </summary>
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/shop-item")]
 public class ShopItemController
 {
     private readonly GetAllShopItemsUseCase _getAllShopItemsUseCase;
@@ -25,7 +30,7 @@ public class ShopItemController
     [Route("get-all")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<List<ShopItem>>> GetAll([FromQuery] bool includeSold = true)
+    public async Task<ActionResult<ApiResponse<List<ShopItem>>>> GetAll([FromQuery] bool includeSold = true)
     {
         var request = new GetAllShopItemsRequest()
         {
@@ -34,9 +39,9 @@ public class ShopItemController
         var response = await _getAllShopItemsUseCase.Handle(request);
         if (response.Success)
         {
-            return response.ShopItems;
+            return ApiResponse<List<ShopItem>>.Success(response.ShopItems);
         }
-        return new ObjectResult(response.Errors) { StatusCode = 500 };
+        return ApiResponse<List<ShopItem>>.Error(HttpStatusCode.InternalServerError, response.Errors.Select(x => x.Description));
     }
 
     /// <summary>
@@ -44,8 +49,7 @@ public class ShopItemController
     /// </summary>
     [HttpGet]
     [Route("get-revenue")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<decimal>> GetRevenue()
+    public async Task<ActionResult<ApiResponse<decimal>>> GetRevenue()
     {
         throw new NotImplementedException();
     }
@@ -58,8 +62,7 @@ public class ShopItemController
     /// </summary>
     [HttpPost]
     [Route("add-item")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<ActionResult<ShopItem>> AddShopItem([FromBody] AddShopItemRequest request)
+    public async Task<ActionResult<ApiResponse<int>>> AddShopItem([FromBody] AddShopItemRequest request)
     {
         throw new NotImplementedException();
     }
@@ -70,9 +73,7 @@ public class ShopItemController
     /// </summary>
     [HttpPost]
     [Route("mark-as-sold")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ShopItem>> MarkItemAsSold([FromBody] string id)
+    public async Task<ActionResult<ApiResponse<int>>> MarkItemAsSold([FromBody] string id)
     {
         throw new NotImplementedException();
     }
