@@ -56,19 +56,6 @@ public class ShopItemController
     }
 
     /// <summary>
-    /// Returns the revenue of this shop i.e. the sum of all sold items.
-    /// </summary>
-    [HttpGet]
-    [Route("shop-items/revenue")]
-    public async Task<ActionResult<ApiResponse<decimal>>> GetRevenue()
-    {
-        return ApiResponse<decimal>.Error(
-            HttpStatusCode.NotImplemented,
-            ["This method is not implemented yet."]
-        );
-    }
-
-    /// <summary>
     /// Creates or updates a shop item.
     /// </summary>
     [HttpPost]
@@ -77,6 +64,19 @@ public class ShopItemController
     public async Task<ActionResult<ApiResponse<int>>> CreateOrUpdateShopItem([FromBody] CreateOrUpdateShopItemRequest request, int? id)
     {
         return ApiResponse<int>.Error(
+            HttpStatusCode.NotImplemented,
+            ["This method is not implemented yet."]
+        );
+    }
+
+    /// <summary>
+    /// Returns the revenue of this shop i.e. the sum of all sold items.
+    /// </summary>
+    [HttpGet]
+    [Route("shop-items/revenue")]
+    public async Task<ActionResult<ApiResponse<decimal>>> GetRevenue()
+    {
+        return ApiResponse<decimal>.Error(
             HttpStatusCode.NotImplemented,
             ["This method is not implemented yet."]
         );
