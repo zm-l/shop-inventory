@@ -5,6 +5,9 @@ using KyberlifeInterviewCsharp.Infrastructure.Repositories;
 
 namespace KyberlifeInterviewCsharp.Core.UseCases;
 
+/// <summary>
+/// Retrieves all shop items from the repository.
+/// </summary>
 public class GetAllShopItemsUseCase : IUseCase<GetAllShopItemsRequest, GetAllShopItemsResponse>
 {
     private readonly IShopItemRepository _shopItemRepository;

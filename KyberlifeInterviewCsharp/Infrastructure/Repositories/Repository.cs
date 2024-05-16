@@ -8,6 +8,9 @@ namespace KyberlifeInterviewCsharp.Infrastructure.Repositories;
 
 /// <summary>
 /// Generic implementation of IRepository.
+///
+/// There are some methods here that may be useful to you. You should not
+/// need to modify this class, but you may do so if required.
 /// </summary>
 public class Repository<T>(DbContext dbContext) : IRepository<T>
     where T : BaseEntity

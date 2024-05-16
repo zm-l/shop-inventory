@@ -5,21 +5,21 @@ namespace KyberlifeInterviewCsharp.Service;
 /// <summary>
 /// Standard response format for all API calls.
 ///
-/// You should not need to modify this class.
+/// You should not need to modify this class, but you are allowed to if needed.
 /// </summary>
-public class ApiResponse<T>
+public class BaseResponse<T>
 {
     public required HttpStatusCode Code { get; set; }
     public required IEnumerable<string>? Errors { get; set; }
     public T? Data { get; set; }
 
-    private ApiResponse()
+    private BaseResponse()
     {
     }
 
-    public static ApiResponse<T> Success(T data)
+    public static BaseResponse<T> Success(T data)
     {
-        return new ApiResponse<T>
+        return new BaseResponse<T>
         {
             Code = HttpStatusCode.OK,
             Errors = null,
@@ -27,9 +27,9 @@ public class ApiResponse<T>
         };
     }
 
-    public static ApiResponse<T> Error(HttpStatusCode code, IEnumerable<string> errors)
+    public static BaseResponse<T> Error(HttpStatusCode code, IEnumerable<string> errors)
     {
-        return new ApiResponse<T>
+        return new BaseResponse<T>
         {
             Code = code,
             Errors = errors,

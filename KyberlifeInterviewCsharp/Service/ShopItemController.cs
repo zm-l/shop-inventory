@@ -25,12 +25,14 @@ public class ShopItemController
 
     /// <summary>
     /// Returns all shop items within this shop.
+    ///
+    /// This endpoint is implemented for you.
     /// </summary>
     [HttpGet]
     [Route("shop-items")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<ApiResponse<List<ShopItem>>>> GetAll([FromQuery] bool includeSold = true)
+    public async Task<ActionResult<BaseResponse<List<ShopItem>>>> GetAll([FromQuery] bool includeSold = true)
     {
         var request = new GetAllShopItemsRequest()
         {
@@ -38,45 +40,45 @@ public class ShopItemController
         };
         var response = await _getAllShopItemsUseCase.Handle(request);
         return response.Success
-            ? ApiResponse<List<ShopItem>>.Success(response.ShopItems)
-            : ApiResponse<List<ShopItem>>.Error(HttpStatusCode.InternalServerError, response.Errors.Select(x => x.Description));
+            ? BaseResponse<List<ShopItem>>.Success(response.ShopItems)
+            : BaseResponse<List<ShopItem>>.Error(HttpStatusCode.InternalServerError, response.Errors.Select(x => x.Description));
     }
 
     /// <summary>
-    /// Gets a specific shop item by its ID.
+    /// Endpoint #1: Gets a specific shop item by its ID.
     /// </summary>
     [HttpGet]
     [Route("shop-item/{id:int}")]
-    public async Task<ActionResult<ApiResponse<ShopItem>>> GetShopItem(int id)
+    public async Task<ActionResult<BaseResponse<ShopItem>>> GetShopItem(int id)
     {
-        return ApiResponse<ShopItem>.Error(
+        return BaseResponse<ShopItem>.Error(
             HttpStatusCode.NotImplemented,
             ["This method is not implemented yet."]
         );
     }
 
     /// <summary>
-    /// Creates or updates a shop item.
+    /// Endpoint #2: Creates or updates a shop item.
     /// </summary>
     [HttpPost]
     [Route("shop-item")]
     [Route("shop-item/{id:int}")]
-    public async Task<ActionResult<ApiResponse<int>>> CreateOrUpdateShopItem([FromBody] CreateOrUpdateShopItemRequest request, int? id)
+    public async Task<ActionResult<BaseResponse<int>>> CreateOrUpdateShopItem([FromBody] CreateOrUpdateShopItemRequest request, int? id)
     {
-        return ApiResponse<int>.Error(
+        return BaseResponse<int>.Error(
             HttpStatusCode.NotImplemented,
             ["This method is not implemented yet."]
         );
     }
 
     /// <summary>
-    /// Returns the revenue of this shop i.e. the sum of all sold items.
+    /// Endpoint #3: Returns the revenue of this shop i.e. the sum of all sold items.
     /// </summary>
     [HttpGet]
     [Route("shop-items/revenue")]
-    public async Task<ActionResult<ApiResponse<decimal>>> GetRevenue()
+    public async Task<ActionResult<BaseResponse<decimal>>> GetRevenue()
     {
-        return ApiResponse<decimal>.Error(
+        return BaseResponse<decimal>.Error(
             HttpStatusCode.NotImplemented,
             ["This method is not implemented yet."]
         );

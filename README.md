@@ -1,15 +1,7 @@
 # Kyberlife Interview (C#)
 
-## Overview
-This is a RESTful API that follows a simplified version of Robert Martin's
-"Clean Architecture".
-
 ## Requirements
 - .NET Core 8.0
-
-## Database
-The database is a simple in-memory database with no persistence, so no
-database setup is required.
 
 ## Architecture
 As per the Clean Architecture, the project is divided into layers. There are
@@ -39,10 +31,15 @@ which then unwinds back through the layers to the Service layer. Data is
 passed through each layer in via _Data Transfer Objects_ (DTOs), which are
 the various `Request` and `Response` classes.
 
+## Database
+The database is a simple in-memory database with no persistence, so no
+database setup is required.
+
 ## Task
-Your task is to implement **2** endpoints in `Service/ShopItemController.cs`.
+Your task is to implement **2** (optionally 3) endpoints in `Service/ShopItemController.cs`.
 The specifications are as follows:
 
+Firstly, define the following objects
 ```
 ShopItem {
   id: int
@@ -56,37 +53,32 @@ BaseResponse<T> {
   errors: string[]
   data: T
 }
-
-GET /api/shop-item/{id}
-- Description: Gets a single item from the shop.
-    - If id does not exist, returns 404 with a suitable error message.
-    - Otherwise, returns 200 with the item.
-- Request: { id: int }
-- Response: BaseResponse<ShopItem>
-
-POST /api/shop-item/{id?:int}
-- Description: Adds a new item to the shop. id is optional.
-    - If id is not given, the item is added to the shop with a new
-      id marked as unsold, returning 200
-    - If id is given and the item does not exist, returns 404 with a suitable
-      error message.
-    - If id is given and the item exists and the item is sold, returns 400
-      with a suitable error message.
-    - If id is given and the item exists and the item is unsold, updates the
-      item, leaving it as unsold, and returns 200.
-- Request: ShopItem
-- Response: BaseResponse<int>
 ```
 
-If time permits, you may implement the following endpoint:
+### Endpoint 1: Get a single item from the shop
+- `GET /api/shop-item/{id:int}`
+- Gets a single item from the shop. If `id` is not supplied, returns
+  `404` with a suitable error message. Otherwise, returns `200` with the item.
+- Request Body: `{}`
+- Response: `BaseResponse<ShopItem>`
 
-```
-GET /api/shop-item/revenue
-- Description: Gets the total revenue of all sold items in the shop.
-    - Returns 200 with the total revenue.
-- Request: {}
-- Response: BaseResponse<decimal>
-```
+### Endpoint 2: Add a new item to the shop
+- `POST /api/shop-item/{id?:int}`
+- Adds a new item to the shop
+  - If `id` is not supplied, the item is added to the shop with a new `id` and
+    marked as unsold, returning `200` with the new `id`.
+  - If `id` is supplied and the item does not exist, returns `404` with a suitable
+    error message.
+  - If `id` is supplied and the item exists and the item is sold, returns `400`
+    with a suitable error message.
+  - If `id` is supplied and the item exists and the item is unsold, updates the
+    item, leaving it as unsold, and returns `200` and the `id`.
+- Request Body: `ShopItem`
+- Response: `BaseResponse<int>`
 
-There is a single endpoint already implemented `GET /api/shop-items` which
-retrieves all the items in the shop.
+### Endpoint 3: Get Revenue (Optional)
+**If time permits, you may implement the following endpoint:**
+- `GET /api/shop-item/revenue`
+- Gets the total revenue of all sold items in the shop. Returns 200 with the total revenue.
+- Request: `{}`
+- Response: `BaseResponse<decimal>`

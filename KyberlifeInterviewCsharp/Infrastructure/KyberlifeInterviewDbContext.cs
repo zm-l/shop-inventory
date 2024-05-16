@@ -6,6 +6,8 @@ namespace KyberlifeInterviewCsharp.Infrastructure;
 
 /// <summary>
 /// DbContext for the application.
+///
+/// You should not need to modify this class.
 /// </summary>
 public class KyberlifeInterviewDbContext(DbContextOptions<KyberlifeInterviewDbContext> options)
     : DbContext(options)

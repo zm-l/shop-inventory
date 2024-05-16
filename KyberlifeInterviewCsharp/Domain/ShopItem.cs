@@ -1,5 +1,8 @@
 namespace KyberlifeInterviewCsharp.Domain;
 
+/// <summary>
+/// The ShopItem entity representing an item in the shop.
+/// </summary>
 public class ShopItem : BaseEntity
 {
     public string Name { get; set; }

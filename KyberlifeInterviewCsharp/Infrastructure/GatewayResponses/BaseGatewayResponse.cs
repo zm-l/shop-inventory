@@ -7,6 +7,8 @@ namespace KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
 ///
 /// Every repository method should return a concrete instance of this class back
 /// to the UseCases.
+///
+/// You should not need to modify this class.
 /// </summary>
 public abstract class BaseGatewayResponse(bool success, List<Error> errors)
 {
