@@ -55,14 +55,7 @@ BaseResponse<T> {
 }
 ```
 
-### Endpoint 1: Get a single item from the shop
-- `GET /api/shop-item/{id:int}`
-- Gets a single item from the shop. If `id` is not supplied, returns
-  `404` with a suitable error message. Otherwise, returns `200` with the item.
-- Request Body: `{}`
-- Response: `BaseResponse<ShopItem>`
-
-### Endpoint 2: Add a new item to the shop
+### Endpoint 1: Add a new item to the shop
 - `POST /api/shop-item/{id?:int}`
 - Adds a new item to the shop
   - If `id` is not supplied, the item is added to the shop with a new `id` and
@@ -75,6 +68,13 @@ BaseResponse<T> {
     item, leaving it as unsold, and returns `200` and the `id`.
 - Request Body: `ShopItem`
 - Response: `BaseResponse<int>`
+
+### Endpoint 2: Get a single item from the shop
+- `GET /api/shop-item/{id:int}`
+- Gets a single item from the shop. If `id` is not supplied, returns
+  `404` with a suitable error message. Otherwise, returns `200` with the item.
+- Request Body: `{}`
+- Response: `BaseResponse<ShopItem>`
 
 ### Endpoint 3: Get Revenue (Optional)
 **If time permits, you may implement the following endpoint:**

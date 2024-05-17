@@ -45,20 +45,7 @@ public class ShopItemController
     }
 
     /// <summary>
-    /// Endpoint #1: Gets a specific shop item by its ID.
-    /// </summary>
-    [HttpGet]
-    [Route("shop-item/{id:int}")]
-    public async Task<ActionResult<BaseResponse<ShopItem>>> GetShopItem(int id)
-    {
-        return BaseResponse<ShopItem>.Error(
-            HttpStatusCode.NotImplemented,
-            ["This method is not implemented yet."]
-        );
-    }
-
-    /// <summary>
-    /// Endpoint #2: Creates or updates a shop item.
+    /// Endpoint #1: Creates or updates a shop item.
     /// </summary>
     [HttpPost]
     [Route("shop-item")]
@@ -66,6 +53,19 @@ public class ShopItemController
     public async Task<ActionResult<BaseResponse<int>>> CreateOrUpdateShopItem([FromBody] CreateOrUpdateShopItemRequest request, int? id)
     {
         return BaseResponse<int>.Error(
+            HttpStatusCode.NotImplemented,
+            ["This method is not implemented yet."]
+        );
+    }
+
+    /// <summary>
+    /// Endpoint #2: Gets a specific shop item by its ID.
+    /// </summary>
+    [HttpGet]
+    [Route("shop-item/{id:int}")]
+    public async Task<ActionResult<BaseResponse<ShopItem>>> GetShopItem(int id)
+    {
+        return BaseResponse<ShopItem>.Error(
             HttpStatusCode.NotImplemented,
             ["This method is not implemented yet."]
         );
