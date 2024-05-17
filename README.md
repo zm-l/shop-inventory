@@ -31,6 +31,12 @@ which then unwinds back through the layers to the Service layer. Data is
 passed through each layer in via _Data Transfer Objects_ (DTOs), which are
 the various `Request` and `Response` classes.
 
+---
+
+![flow](./InterviewArchitectureFlow.drawio.png)
+
+---
+
 ## Database
 The database is a simple in-memory database with no persistence, so no
 database setup is required.
