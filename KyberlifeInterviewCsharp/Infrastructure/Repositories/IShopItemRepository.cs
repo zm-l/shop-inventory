@@ -10,7 +10,7 @@ namespace KyberlifeInterviewCsharp.Infrastructure.Repositories;
 /// You should add any additional methods you need to interact with the
 /// ShopItem entity
 /// </summary>
-public interface IShopItemRepository
+public interface IShopItemRepository : IRepository<ShopItem>
 {
     /// <summary>
     /// Returns a list of ShopItems.
