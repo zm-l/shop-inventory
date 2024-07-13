@@ -12,9 +12,16 @@ namespace KyberlifeInterviewCsharp.Infrastructure.Repositories;
 /// There are some methods here that may be useful to you. You should not
 /// need to modify this class, but you may do so if required.
 /// </summary>
-public class Repository<T>(DbContext dbContext) : IRepository<T>
+public class Repository<T> : IRepository<T>
     where T : BaseEntity
 {
+    private readonly DbContext dbContext;
+
+    public Repository(DbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+
     public async Task<CreateOrUpdateResponse<T>> Create(T item)
     {
         try

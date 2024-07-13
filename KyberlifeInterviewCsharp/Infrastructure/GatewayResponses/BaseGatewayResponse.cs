@@ -10,8 +10,14 @@ namespace KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
 ///
 /// You should not need to modify this class.
 /// </summary>
-public abstract class BaseGatewayResponse(bool success, List<Error> errors)
+public abstract class BaseGatewayResponse
 {
-    public bool Success { get; } = success;
-    public List<Error> Errors { get; } = errors;
+    public bool Success { get; }
+    public List<Error> Errors { get; }
+
+    public BaseGatewayResponse(bool success, List<Error> errors)
+    {
+        Success = success;
+        Errors = errors;
+    }
 }

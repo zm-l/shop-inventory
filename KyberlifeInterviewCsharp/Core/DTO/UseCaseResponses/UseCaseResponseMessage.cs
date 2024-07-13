@@ -5,8 +5,14 @@ namespace KyberlifeInterviewCsharp.Core.DTO.UseCaseResponses;
 ///
 /// All UseCases should return a concrete instance of this class.
 /// </summary>
-public abstract class UseCaseResponseMessage(bool success, List<Error> errors)
+public abstract class UseCaseResponseMessage
 {
-    public bool Success { get; init; } = success;
-    public List<Error> Errors { get; init; } = errors;
+    public bool Success { get; init; }
+    public List<Error> Errors { get; init; }
+
+    public UseCaseResponseMessage(bool success, List<Error> errors)
+    {
+        Success = success;
+        Errors = errors;
+    }
 }

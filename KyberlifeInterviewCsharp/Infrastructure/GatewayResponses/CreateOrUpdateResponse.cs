@@ -2,9 +2,14 @@ using KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
 
 namespace KyberlifeInterviewCsharp.Core.DTO.GatewayResponses;
 
-public class CreateOrUpdateResponse<T>(int id, T? result, bool success, List<Error> errors)
-    : BaseGatewayResponse(success, errors)
+public class CreateOrUpdateResponse<T> : BaseGatewayResponse
 {
-    public int Id { get; set; } = id;
-    public T? Result { get; set; } = result;
+    public int Id { get; set; }
+    public T? Result { get; set; }
+
+    public CreateOrUpdateResponse(int id, T? result, bool success, List<Error> errors) : base(success, errors)
+    {
+        Id = id;
+        Result = result;
+    }
 }

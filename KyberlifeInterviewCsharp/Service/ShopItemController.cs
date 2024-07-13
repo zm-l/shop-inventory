@@ -34,10 +34,7 @@ public class ShopItemController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<BaseResponse<List<ShopItem>>>> GetAll([FromQuery] bool includeSold = true)
     {
-        var request = new GetAllShopItemsRequest()
-        {
-            IncludeSold = includeSold,
-        };
+        var request = new GetAllShopItemsRequest(includeSold);
         var response = await _getAllShopItemsUseCase.Handle(request);
         return response.Success
             ? BaseResponse<List<ShopItem>>.Success(response.ShopItems)

@@ -8,4 +8,9 @@ namespace KyberlifeInterviewCsharp.Core.DTO.UseCaseRequests;
 public class GetAllShopItemsRequest
 {
     public bool IncludeSold { get; init; }
+
+    public GetAllShopItemsRequest(bool includeSold)
+    {
+        IncludeSold = includeSold;
+    }
 }
