@@ -4,13 +4,11 @@
 - .NET Core 8.0
 
 ## Architecture
-As per the Clean Architecture, the project is divided into layers. There are
-four, being
+This project is divided into distinct "layers". There are three, being
 
 1. Domain
 2. Service
-3. Core
-4. Infrastructure
+3. Infrastructure
 
 The **Domain** layer contains the business entities. In this application, there is
 a single entity, `ShopItem` that represents an item sold in a shop. All other
@@ -18,22 +16,15 @@ layers depend on this entity.
 
 The **Service** layer contains the client-facing API. It defines the high-level
 actions that a client might want to perform. There is a single service located
-in `Service/ShopItemController.cs`.
-
-The **Core** layer contains the Use Cases, which are units of business logic.
-Some examples are "add an item to the shop" or "get all items from the shop".
+in `Service/ShopItemController.cs`. In this model, each endpoint is a unit
+of business logic. Some examples are "add an item to the shop" or "get all items
+from the shop".
 
 The **Infrastructure** layer contains the implementation details. In this case,
 most of the details are retrieving and storing data in the database.
 
-The flow of control flows from the Service, to the Core, to the Infrastructure,
-which then unwinds back through the layers to the Service layer. Data is
-passed through each layer in via _Data Transfer Objects_ (DTOs), which are
+Data is passed through each layer in via _Data Transfer Objects_ (DTOs), which are
 the various `Request` and `Response` classes.
-
----
-
-![flow](./InterviewArchitectureFlow.drawio.png)
 
 ---
 
@@ -45,7 +36,7 @@ database setup is required.
 Your task is to implement **2** (optionally 3) endpoints in `Service/ShopItemController.cs`.
 The specifications are as follows:
 
-Firstly, define the following objects
+Firstly, define the following objects:
 ```
 ShopItem {
   id: int

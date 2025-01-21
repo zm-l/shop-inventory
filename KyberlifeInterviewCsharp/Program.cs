@@ -5,7 +5,6 @@
 // but for simplicity, it is all done here.
 
 using Microsoft.EntityFrameworkCore;
-using KyberlifeInterviewCsharp.Core.UseCases;
 using KyberlifeInterviewCsharp.Infrastructure;
 using KyberlifeInterviewCsharp.Infrastructure.Repositories;
 using KyberlifeInterviewCsharp.Service;
@@ -19,10 +18,6 @@ builder.Services.AddControllers();
 //Service
 builder.Services
     .AddScoped<ShopItemController>();
-
-//UseCases
-builder.Services
-    .AddScoped<GetAllShopItemsUseCase>();
 
 //Infrastructure
 builder.Services

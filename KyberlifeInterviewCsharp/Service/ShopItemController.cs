@@ -1,7 +1,6 @@
 using System.Net;
-using KyberlifeInterviewCsharp.Core.DTO.UseCaseRequests;
-using KyberlifeInterviewCsharp.Core.UseCases;
 using KyberlifeInterviewCsharp.Domain;
+using KyberlifeInterviewCsharp.Infrastructure.Repositories;
 using KyberlifeInterviewCsharp.Service.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,11 +15,11 @@ namespace KyberlifeInterviewCsharp.Service;
 [Route("/")]
 public class ShopItemController
 {
-    private readonly GetAllShopItemsUseCase _getAllShopItemsUseCase;
+    private readonly IShopItemRepository _shopItemRepository;
 
-    public ShopItemController(GetAllShopItemsUseCase getAllShopItemsUseCase)
+    public ShopItemController(IShopItemRepository shopItemRepository)
     {
-        _getAllShopItemsUseCase = getAllShopItemsUseCase;
+        _shopItemRepository = shopItemRepository;
     }
 
     /// <summary>
@@ -34,10 +33,9 @@ public class ShopItemController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<BaseResponse<List<ShopItem>>>> GetAll([FromQuery] bool includeSold = true)
     {
-        var request = new GetAllShopItemsRequest(includeSold);
-        var response = await _getAllShopItemsUseCase.Handle(request);
+        var response = await _shopItemRepository.GetAll(includeSold);
         return response.Success
-            ? BaseResponse<List<ShopItem>>.Success(response.ShopItems)
+            ? BaseResponse<List<ShopItem>>.Success(response.Result)
             : BaseResponse<List<ShopItem>>.Error(HttpStatusCode.InternalServerError, response.Errors.Select(x => x.Description));
     }
 
@@ -49,6 +47,7 @@ public class ShopItemController
     [Route("shop-item/{id:int}")]
     public async Task<ActionResult<BaseResponse<int>>> CreateOrUpdateShopItem([FromBody] CreateOrUpdateShopItemRequest request, int? id)
     {
+        await Task.CompletedTask;
         return BaseResponse<int>.Error(
             HttpStatusCode.NotImplemented,
             ["This method is not implemented yet."]
@@ -62,6 +61,7 @@ public class ShopItemController
     [Route("shop-item/{id:int}")]
     public async Task<ActionResult<BaseResponse<ShopItem>>> GetShopItem(int id)
     {
+        await Task.CompletedTask;
         return BaseResponse<ShopItem>.Error(
             HttpStatusCode.NotImplemented,
             ["This method is not implemented yet."]
@@ -75,6 +75,7 @@ public class ShopItemController
     [Route("shop-items/revenue")]
     public async Task<ActionResult<BaseResponse<decimal>>> GetRevenue()
     {
+        await Task.CompletedTask;
         return BaseResponse<decimal>.Error(
             HttpStatusCode.NotImplemented,
             ["This method is not implemented yet."]

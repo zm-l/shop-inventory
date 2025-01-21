@@ -1,4 +1,4 @@
-using KyberlifeInterviewCsharp.Core.DTO;
+using KyberlifeInterviewCsharp.Domain;
 
 namespace KyberlifeInterviewCsharp.Infrastructure.GatewayResponses;
 

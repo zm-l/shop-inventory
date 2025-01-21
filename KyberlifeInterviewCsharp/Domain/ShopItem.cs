@@ -2,6 +2,8 @@ namespace KyberlifeInterviewCsharp.Domain;
 
 /// <summary>
 /// The ShopItem entity representing an item in the shop.
+///
+/// You should not need to modify this class.
 /// </summary>
 public class ShopItem : BaseEntity
 {
