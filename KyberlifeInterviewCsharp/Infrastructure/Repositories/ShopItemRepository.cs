@@ -35,4 +35,34 @@ public class ShopItemRepository : Repository<ShopItem>, IShopItemRepository
             return new GetRangeResponse<ShopItem>([], false, [new Error(e.Message)]);
         }
     }
+
+    public async Task<bool> AddItem(string name, decimal price)
+    {
+        try
+        {
+            await _dbContext.ShopItems.AddAsync(new ShopItem(name, price, false));
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return false;
+        }
+    }
+    
+    public async Task<bool> UpdateItem(string name, decimal price)
+    {
+        try
+        {
+            await _dbContext.ShopItems.AddAsync(new ShopItem(name, price, false));
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return false;
+        }
+    }
 }

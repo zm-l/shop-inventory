@@ -16,4 +16,6 @@ public interface IShopItemRepository : IRepository<ShopItem>
     /// Returns a list of ShopItems.
     /// </summary>
     Task<GetRangeResponse<ShopItem>> GetAll(bool includeSold);
+
+    Task<bool> AddItem(string name, decimal price);
 }

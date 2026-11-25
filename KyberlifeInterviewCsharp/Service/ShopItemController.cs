@@ -1,4 +1,5 @@
 using System.Net;
+using KyberlifeInterviewCsharp.Core.DTO.GatewayResponses;
 using KyberlifeInterviewCsharp.Domain;
 using KyberlifeInterviewCsharp.Infrastructure.Repositories;
 using KyberlifeInterviewCsharp.Service.Requests;
@@ -47,6 +48,29 @@ public class ShopItemController
     [Route("shop-item/{id:int}")]
     public async Task<ActionResult<BaseResponse<int>>> CreateOrUpdateShopItem([FromBody] CreateOrUpdateShopItemRequest request, int? id)
     {
+        GetRangeResponse<ShopItem> items = await _shopItemRepository.GetAll(true);
+
+        if (id == null)
+        {
+            await _shopItemRepository.AddItem(request.Name, request.Price);
+            return BaseResponse<int>.Success(200);
+        }
+
+        IList<ShopItem> foundItems = items.Result.Where(x => x.Id == id).ToList();
+
+        if (foundItems.Count == 0)
+        {
+            return BaseResponse<int>.Error(HttpStatusCode.NotFound, ["no id found"]);
+        }
+
+        if (foundItems[0].IsSold)
+        {
+            return BaseResponse<int>.Error(HttpStatusCode.BadRequest, ["item is sold"]);
+        }
+        
+        
+        
+        
         await Task.CompletedTask;
         return BaseResponse<int>.Error(
             HttpStatusCode.NotImplemented,
